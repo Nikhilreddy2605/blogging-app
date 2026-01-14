@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - ExcelR Blog</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+
+    <!-- INLINE CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #ffffff;
+            color: #333;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: #ffffff;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand i {
+            font-size: 1.6rem;
+            color: #ff7f50;
+        }
+
+        .navbar-nav .nav-link {
+            color: #444 !important;
+            font-weight: 500;
+            margin-left: 1.2rem;
+            transition: 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ff7f50 !important;
+        }
+
+        /* REGISTER CONTAINER */
+        .register-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem 1rem;
+        }
+
+        .register-card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 450px;
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.15);
+        }
+
+        /* HEADER */
+        .register-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .register-header i {
+            font-size: 2.4rem;
+            color: #ff7f50;
+            margin-bottom: 0.5rem;
+        }
+
+        .register-header h2 {
+            font-weight: 600;
+        }
+
+        .register-header p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* ERROR MESSAGE */
+        .error-message {
+            background: #ffe6e6;
+            color: #d9534f;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        /* FORM */
+        .form-group {
+            position: relative;
+            margin-bottom: 1.4rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px 12px 42px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            font-size: 0.9rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #ff7f50;
+            box-shadow: 0 0 0 2px rgba(255,127,80,0.15);
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 14px;
+            top: 42px;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* REGISTER BUTTON */
+        .register-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #ff7f50, #ff4500);
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 0.5rem;
+        }
+
+        .register-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(255,127,80,0.4);
+        }
+
+        /* LOGIN LINK */
+        .login-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .login-link a {
+            color: #ff7f50;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #1e1e2f;
+            padding: 1rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .footer p {
+            color: #ccc;
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 480px) {
+            .register-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .navbar-nav {
+                text-align: center;
+            }
+
+            .navbar-nav .nav-link {
+                margin-left: 0;
+                margin-top: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-blog"></i>
+            </a>
+            <div class="navbar-nav ml-auto">
+                <a class="nav-link" th:href="@{/}">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a class="nav-link" href="#" style="color: #667eea !important;">
+                    <i class="fas fa-user-plus"></i> Register
+                </a>
+                <a class="nav-link" th:href="@{/login}">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Register Container -->
+    <div class="register-container">
+        <div class="register-card">
+            <div class="register-header">
+                <i class="fas fa-user-plus"></i>
+                <h2>Create Account</h2>
+                <p>Join us and start sharing your thoughts</p>
+            </div>
+
+            <div class="error-message" th:if="${error}" th:text="${error}"></div>
+
+            <form th:action="@{/register}" th:object="${user}" method="post">
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> First Name</label>
+                    <i class="fas fa-user input-icon"></i>
+                    <input type="text" th:field="*{fname}" placeholder="Enter your first name" required />
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Last Name</label>
+                    <i class="fas fa-user input-icon"></i>
+                    <input type="text" th:field="*{lname}" placeholder="Enter your last name" required />
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-envelope"></i> Email</label>
+                    <i class="fas fa-envelope input-icon"></i>
+                    <input type="email" th:field="*{email}" placeholder="Enter your email" required />
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Password</label>
+                    <i class="fas fa-lock input-icon"></i>
+                    <input type="password" th:field="*{pwd}" placeholder="Enter your password" required />
+                </div>
+
+                <button type="submit" class="register-btn">
+                    <i class="fas fa-user-plus"></i> Register
+                </button>
+            </form>
+
+            <div class="login-link">
+                <p>Already registered? <a th:href="@{/login}">Login here <i class="fas fa-arrow-right"></i></a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Copyright © 2023 <a href="#" style="color: #fff;">Nikhilreddy</a>. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
